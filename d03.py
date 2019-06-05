@@ -34,7 +34,3 @@ def update_output_div(num1, num2):
     else:
         sum = 0
     return u'两数相加和为：{}'.format(sum)
-
-
-if __name__ == '__main__':
-    app.run_server(debug=True)
