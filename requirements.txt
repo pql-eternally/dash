@@ -1,2 +1,8 @@
 dash==0.43.0  # The core dash backend
 dash-daq==0.1.0  # DAQ components (newly open-sourced!)
+gevent==1.1.2
+pymongo==2.8.1
+-e git+https://github.com/o3cloud/daisy@v0.10#egg=daisy
+-e git+https://github.com/o3cloud/shuttle@v1.0.1#egg=shuttle
+-e git+https://github.com/o3cloud/yoda@v0.12#egg=yoda
+-e git+https://github.com/o3cloud/boss-backbone@v7.10.1#egg=boss-backbone

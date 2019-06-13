@@ -1,0 +1,21 @@
+
+.margin-top-10{
+    margin-top: 10px;
+}
+
+.margin-bottom-10{
+    margin-bottom: 10px;
+}
+
+.padding-bottom-10{
+    padding-bottom: 10px;
+}
+
+.split-line{
+    height: 1px;
+    background: #cccccc;
+}
+
+.search-staff-btn{
+    margin-right: 15px;
+}

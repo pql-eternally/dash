@@ -1,0 +1,19 @@
+---
+wsgi:
+  host: 0.0.0.0
+  port: 8888
+  debug: True
+
+mongodb_service:
+  ums_db:
+    uri: "mongodb://127.0.0.1"
+    database: boss-ums
+    options: {}
+  boss_db:
+    uri: "mongodb://127.0.0.1"
+    database: boss-dev
+    options: {}
+  qlife_db:
+    uri: "mongodb://127.0.0.1"
+    database: boss-qlife
+    options: {}
