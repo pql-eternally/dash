@@ -10,7 +10,7 @@ from boss_common.core.ctx import _AppCtxGlobals
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
 from werkzeug.serving import run_simple
 
-from aoao_boss_app import app as boss_app
+from aoao_boss_staff_app import app as boss_app
 from ums_app import app as ums_app
 
 

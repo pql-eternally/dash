@@ -1,47 +1,17 @@
 # -*- coding:utf-8 -*-
 
 import pandas as pd
-import dash
 import dash_html_components as html
 import dash_core_components as dcc
 import dash_table
 
 from dash.dependencies import Input, Output, State
 from . import constants
+from .app import app
 
 from pymongo import MongoClient
 conn = MongoClient("mongodb://127.0.0.1")
 db = conn['boss-dev']
-
-# external JavaScript files
-external_scripts = [
-    'https://www.google-analytics.com/analytics.js',
-    {'src': 'https://cdn.polyfill.io/v2/polyfill.min.js'},
-    {
-        'src': 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.core.js',
-        'integrity': 'sha256-Qqd/EfdABZUcAxjOkMi8eGEivtdTkh3b65xCZL4qAQA=',
-        'crossorigin': 'anonymous'
-    }
-]
-
-# external CSS stylesheets
-external_stylesheets = [
-    'https://codepen.io/chriddyp/pen/bWLwgP.css',
-    {
-        'href': 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css',
-        'rel': 'stylesheet',
-        'integrity': 'sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO',
-        'crossorigin': 'anonymous'
-    }
-]
-
-
-app = dash.Dash(
-    __name__,
-    requests_pathname_prefix='/boss/',
-    external_scripts=external_scripts,
-    external_stylesheets=external_stylesheets
-)
 
 
 def get_platforms():
@@ -217,7 +187,7 @@ def build_staff_spec(platform_list, supplier_list, city_spelling_list, biz_distr
     return spec
 
 
-app.layout = html.Div(className='container', children=[
+layout = html.Div(className='container', children=[
     html.Div(className='jumbotron', children=[
         html.Form(id='search-staff-form', children=[
             html.Div(className='row', children=[
