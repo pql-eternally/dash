@@ -6,7 +6,7 @@ import dash_html_components as html
 
 from pymongo import MongoClient
 from shuttle import Shuttle
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 
 from apps import staff_app, bill_app, personal_bill_app
 from apps.app import app
@@ -16,21 +16,46 @@ logger = logging.getLogger(__name__)
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
+    html.Div(children=[
+        dcc.Tabs(
+            id="tabs",
+            value='staff',
+            children=[
+                dcc.Tab(label='员工查询', value='staff'),
+                dcc.Tab(label='每日骑士单量', value='bill'),
+                dcc.Tab(label='骑士日单量', value='personal_bill'),
+            ]
+        ),
+    ]),
     html.Div(id='page-content')
 ])
 
 
 @app.callback(Output('page-content', 'children'),
-              [Input('url', 'pathname')])
-def display_page(pathname):
-    if pathname == '/apps/staff':
+             [Input('tabs', 'value')])
+def display_tab_page(tab_value):
+    print tab_value
+    if tab_value == 'staff':
         return staff_app.layout
-    elif pathname == '/apps/bill':
+    elif tab_value == 'bill':
         return bill_app.layout
-    elif pathname == '/apps/personal_bill':
+    elif tab_value == 'personal_bill':
         return personal_bill_app.layout
     else:
         return '404 Not Found'
+
+
+# @app.callback(Output('page-content', 'children'),
+#               [Input('url', 'pathname')])
+# def display_page(pathname):
+#     if pathname == '/apps/staff':
+#         return staff_app.layout
+#     elif pathname == '/apps/bill':
+#         return bill_app.layout
+#     elif pathname == '/apps/personal_bill':
+#         return personal_bill_app.layout
+#     else:
+#         return '404 Not Found'
 
 
 def init_mongo_db(config, db_key):
